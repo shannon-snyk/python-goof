@@ -10,5 +10,5 @@ jobs:
           cd pip-sample
           cd requirements
           pip3 install -r ci.pip
+          npm install snyk
           snyk test --command=python3 --file=ci.pip --package-manager.pip
-          pip3 install -r test.pip
