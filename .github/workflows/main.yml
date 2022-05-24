@@ -6,10 +6,19 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: install pip dependencies
-        run: pip3 install -r requirements.txt
+        run: pip3 install -r ci.pip
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/python-3.8@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           args: --command=python3 --file=ci.pip --package-manager=pip
+      - uses: actions/checkout@master
+      - name: install pip dependencies
+        run: pip3 install -r test.pip
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/python-3.8@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --command=python3 --file=test.pip --package-manager=pip
