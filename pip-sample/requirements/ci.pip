@@ -51,3 +51,9 @@ mypy==0.910
 types-Markdown==3.3.6
 types-python-dateutil==2.8.2
 types-requests==2.27.25
+
+
+
+google-cloud==0.34.0
+gtfs-realtime-bindings==0.0.5
+html5lib==1.0.1
