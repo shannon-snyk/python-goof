@@ -5,18 +5,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: install pip dependencies
-        run: pip3 install -r ci.pip
-      - name: Run Snyk to check for vulnerabilities
+      - name: change directories to requirements folder
+        run: |
+          cd pip-sample
+          cd requirements
+          pip3 install -r ci.pip
+          pip3 install -r test.pip
+      - name: Run Snyk for ci.pip
         uses: snyk/actions/python-3.8@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           args: --command=python3 --file=ci.pip --package-manager=pip
       - uses: actions/checkout@master
-      - name: install pip dependencies
-        run: pip3 install -r test.pip
-      - name: Run Snyk to check for vulnerabilities
+      - name: Run Snyk for test.pip
         uses: snyk/actions/python-3.8@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
