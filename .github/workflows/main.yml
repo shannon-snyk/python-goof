@@ -13,6 +13,7 @@ jobs:
       - name: install snyk 
         run: npm install -g snyk
       - name: run snyk test
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         run: | 
-          snyk auth
           snyk test --command=python3 --file=ci.pip --package-manager.pip
