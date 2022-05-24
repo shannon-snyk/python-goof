@@ -10,17 +10,5 @@ jobs:
           cd pip-sample
           cd requirements
           pip3 install -r ci.pip
+          snyk test --command=python3 --file=ci.pip --package-manager.pip
           pip3 install -r test.pip
-      - name: Run Snyk for ci.pip
-        uses: snyk/actions/python-3.8@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --command=python3 --file=ci.pip --package-manager=pip
-      - uses: actions/checkout@master
-      - name: Run Snyk for test.pip
-        uses: snyk/actions/python-3.8@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --command=python3 --file=test.pip --package-manager=pip
