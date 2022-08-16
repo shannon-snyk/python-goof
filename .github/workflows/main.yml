@@ -10,7 +10,7 @@ jobs:
         run: |
           cd pipenv-sample
           python -m pip install --upgrade pipenv
-          pipenv install
+          pipenv install --dev --clear
           pipenv update
           npm install --location=global snyk
           snyk auth  ${{ secrets.SNYK_TOKEN }}
