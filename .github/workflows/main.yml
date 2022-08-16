@@ -9,7 +9,8 @@ jobs:
       - name: Change directories + install and run snyk
         run: |
           cd pipenv-sample
-          pipenv
+          python -m pip install --upgrade pipenv
+          pipenv install
           npm install --location=global snyk
           snyk auth  ${{ secrets.SNYK_TOKEN }}
           snyk monitor --file=Pipfile --command=python3
