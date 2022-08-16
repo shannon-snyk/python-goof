@@ -1,0 +1,13 @@
+# This is a basic workflow to help you get started with Actions
+name: Snyk Test
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Change directories + install and run snyk
+        run: |
+          cd pipenv-sample
+          npm install --location=global snyk
+          snyk monitor --file=Pipfile --command=python3
