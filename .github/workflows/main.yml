@@ -6,13 +6,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Change directories + install and run snyk
+      - name: just a whole bunch of stuff cause i'm lazy
         run: |
           cd pipenv-sample
           python -m pip install --upgrade pipenv
-          pipenv shell
           pipenv install
           pipenv update
           npm install --location=global snyk
           snyk auth  ${{ secrets.SNYK_TOKEN }}
-          snyk monitor --file=Pipfile --command=python3
+          snyk monitor --file=Pipfile --dev --command=python3
