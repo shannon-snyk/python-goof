@@ -14,4 +14,5 @@ jobs:
           pipenv update
           npm install --location=global snyk
           snyk auth  ${{ secrets.SNYK_TOKEN }}
-          snyk monitor --file=Pipfile --dev --command=python3
+          snyk monitor --file=Pipfile --dev --command=python3 --package-manager=pip
+          
