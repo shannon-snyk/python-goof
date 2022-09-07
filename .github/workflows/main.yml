@@ -14,13 +14,12 @@ jobs:
         with:
           python-version: 3.7
       - name: Install pipenv
-        run: pip install pipenv
       - name: Run tests
-        run: |
-          pipenv install
       - name: install snyk
         run: |
             cd pipenv-sample
+            pip install pipenv
+            pipenv install
             npm -g install snyk@latest
             snyk auth ${SNYK_TOKEN}
             snyk monitor --command=.venv/bin/python --file=Pipfile
