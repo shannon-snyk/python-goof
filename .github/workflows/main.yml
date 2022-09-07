@@ -13,8 +13,6 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: 3.7
-      - name: change directories
-        run: cd pipenv-sample
       - name: Install pipenv
         run: pip install pipenv
       - name: Run tests
@@ -22,6 +20,7 @@ jobs:
           pipenv install
       - name: install snyk
         run: |
+            cd pipenv-sample
             npm -g install snyk@latest
             snyk auth ${SNYK_TOKEN}
             snyk monitor --command=.venv/bin/python --file=Pipfile
