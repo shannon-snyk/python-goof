@@ -20,6 +20,6 @@ jobs:
             pipenv install
             npm -g install snyk@latest
             snyk auth ${SNYK_TOKEN}
-            snyk monitor --command=.venv/bin/python --file=Pipfile
+            snyk monitor --command=.venv/bin/python --file=Pipfile --dev
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
